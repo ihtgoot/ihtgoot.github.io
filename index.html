@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaibhav Kumar Singh</title>
+<meta name="description" content="Vaibhav Kumar Singh — systems programmer, ML, DevOps. CS undergrad at LPU. Open-source contributor (LibreOffice). Projects in C++, Go, Python. Minor: Machine Learning. Open Minor: DevOps.">
+<meta name="author" content="Vaibhav Kumar Singh">
+<meta property="og:title" content="Vaibhav Kumar Singh">
+<meta property="og:description" content="Systems programmer focused on C++, Go, concurrent systems, and unsupervised ML.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geo&family=Nova+Square&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0c0c0c;
+    --text:    #e6e6e6;
+    --mid:     #888;
+    --dim:     #444;
+    --dimmer:  #282828;
+    --border:  #1c1c1c;
+    --tag-bg:  #141414;
+    --tint:    #c0d0f8;
+    --mono:    'Nova Square', 'JetBrains Mono', monospace;
+    --serif:   'Nova Square', 'EB Garamond', Georgia, serif;
+    --top-h:   44px;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nova Square', sans-serif;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  a { color: var(--tint); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Top bar ───────────────────────────── */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--top-h);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 100;
+  }
+
+  .name-block h1 {
+    font-family: 'Nova Square', var(--mono);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .topbar-left {
+    font-family: 'Nova Square', var(--mono);
+    font-size: 0.72rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .topbar-right {
+    display: flex;
+    gap: 1.8rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--mid);
+  }
+
+  .topbar-right a {
+    color: var(--mid);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.1s, border-color 0.1s;
+  }
+  .topbar-right a:hover { color: var(--text); border-color: var(--mid); text-decoration: none; }
+
+  /* ── Layout ────────────────────────────── */
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    margin-top: var(--top-h);
+    min-height: calc(100vh - var(--top-h));
+  }
+
+  /* ── Left panel ────────────────────────── */
+  .left {
+    border-right: 1px solid var(--border);
+    padding: 3rem 2rem 4rem;
+    position: sticky;
+    top: var(--top-h);
+    height: calc(100vh - var(--top-h));
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  .left::-webkit-scrollbar { width: 0; }
+
+  .name-block p {
+    font-size: 0.88rem;
+    color: var(--mid);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .left-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+  }
+
+  .left-links a { color: var(--tint); }
+  .left-links span { color: var(--dim); }
+
+  .left-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: auto;
+  }
+
+  .left-nav a {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--dim);
+    text-decoration: none;
+    padding: 0.2em 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .left-nav a:hover { color: var(--text); text-decoration: none; }
+
+  /* ── Right / main ──────────────────────── */
+  .right {
+    padding: 3rem 4rem 6rem;
+    min-width: 0;
+  }
+
+  /* ── Bio ───────────────────────────────── */
+  .bio {
+    font-family: 'Geo', sans-serif;
+    font-size: 1.18rem;
+    color: var(--mid);
+    line-height: 2;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Section ───────────────────────────── */
+  .section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--mid);
+    margin-bottom: 1.4rem;
+  }
+
+  /* ── Research pills ────────────────────── */
+  .interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .pill {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--mid);
+    background: var(--tag-bg);
+    border: 1px solid var(--dimmer);
+    border-radius: 20px;
+    padding: 0.2em 0.82em;
+    cursor: default;
+  }
+
+  .pill:hover { border-color: var(--dim); color: var(--text); }
+
+  /* ── Skills ────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0.6rem 1.8rem;
+  }
+
+  .skill-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding-top: 0.2em;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    background: var(--tag-bg);
+    color: #686868;
+    border: 1px solid var(--dimmer);
+    padding: 0.12em 0.6em;
+    border-radius: 3px;
+  }
+
+  /* ── Table rows (projects / experience / certs) ── */
+  .rows { display: flex; flex-direction: column; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0 1.8rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .row:last-child { border-bottom: 1px solid var(--border); }
+
+  .row-year {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--dim);
+    padding-top: 0.3em;
+    line-height: 1.5;
+  }
+
+  .row-body h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #ccc;
+    margin-bottom: 0.18rem;
+  }
+
+  .row-body .where {
+    font-size: 0.8rem;
+    color: var(--dim);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+  }
+
+  .row-body ul {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    font-size: 0.84rem;
+    color: #585858;
+    line-height: 1.72;
+  }
+
+  .row-body p {
+    font-size: 0.84rem;
+    color: #585858;
+    line-height: 1.72;
+  }
+
+  .row-body li::marker { color: var(--dimmer); }
+
+  /* cert row variant */
+  .cert-row {
+    display: grid;
+    grid-template-columns: 1fr 72px;
+    gap: 0 1rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.84rem;
+    color: #585858;
+  }
+
+  .cert-row:last-child { border-bottom: 1px solid var(--border); }
+
+  .cert-date {
+    font-family: var(--mono);
+    font-size: 0.59rem;
+    color: var(--dim);
+    text-align: right;
+    padding-top: 0.15em;
+  }
+
+  /* ── Footer ────────────────────────────── */
+  footer {
+    padding: 2rem 3rem;
+    font-family: var(--mono);
+    font-size: 0.59rem;
+    color: var(--dim);
+    letter-spacing: 0.09em;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Tablet ─────────────────────────────── */
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: 200px 1fr; }
+    .left { padding: 2rem 1.2rem 3rem; }
+    .right { padding: 2.5rem 2.5rem 5rem; }
+    .name-block h1 { font-size: 1.25rem; }
+    .left-links { font-size: 0.75rem; }
+  }
+
+  /* ── Mobile ─────────────────────────────── */
+  @media (max-width: 680px) {
+    html { font-size: 14px; }
+    .topbar { padding: 0 1.2rem; }
+    .topbar-right { display: none; }
+    .layout { grid-template-columns: 1fr; }
+    .left {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 1.2rem 2rem;
+      gap: 1.5rem;
+    }
+    .left-nav { display: none; }
+    .name-block h1 { font-size: 1.6rem; }
+    .left-links { font-size: 0.88rem; }
+    .right { padding: 2rem 1.2rem 4rem; }
+    .bio { font-size: 1rem; }
+    .row { grid-template-columns: 1fr; }
+    .row-year { padding-bottom: 0.2rem; font-size: 0.72rem; }
+    .skills-grid { grid-template-columns: 80px 1fr; }
+    .cert-row { grid-template-columns: 1fr auto; }
+    .section-label { font-size: 0.78rem; }
+    .pill { font-size: 0.72rem; }
+    .tag { font-size: 0.72rem; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vaibhav Kumar Singh",
+  "email": "ihtgoot@gmail.com",
+  "telephone": "+91-8765182766",
+  "url": "https://github.com/ihtgoot",
+  "sameAs": [
+    "https://github.com/ihtgoot",
+    "https://www.linkedin.com/in/vaibhav-singh-9ab991347/"
+  ],
+  "jobTitle": "CS Undergraduate / Open-Source Contributor",
+  "description": "Systems programmer focused on C++, Go, concurrent systems, and unsupervised ML. Open-source contributor to LibreOffice.",
+  "knowsAbout": ["C++", "Go", "Python", "TCP/IP", "Concurrency", "PostgreSQL", "REST APIs", "Machine Learning", "NLP", "Docker", "Kubernetes", "Linux"],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Lovely Professional University",
+    "address": { "@type": "PostalAddress", "addressLocality": "Phagwara", "addressRegion": "Punjab", "addressCountry": "IN" }
+  }
+}
+</script>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <span class="topbar-left">Vaibhav Kumar Singh</span>
+    <nav class="topbar-right">
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+
+    <!-- Left sticky panel -->
+    <aside class="left">
+      <div class="name-block">
+        <h1>Vaibhav Kumar Singh</h1>
+      </div>
+
+      <div class="left-links">
+        <a href="https://github.com/ihtgoot" target="_blank">github.com/ihtgoot</a>
+        <a href="https://www.linkedin.com/in/vaibhav-singh-9ab991347/" target="_blank">linkedin</a>
+        <a href="mailto:ihtgoot@gmail.com">ihtgoot@gmail.com</a>
+        <span>+91 8765182766</span>
+        <span>Phagwara, Punjab</span>
+      </div>
+
+      <nav class="left-nav">
+        <a href="#research">Research Interests</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="right">
+
+      <!-- Bio -->
+      <p class="bio">
+        I write systems software — TCP servers, transactional backends, NLP pipelines. Interested
+        in operating systems, networks, and how code behaves under concurrency. On the ML side,
+        focused on structure discovery and unsupervised methods rather than black-box prediction —
+        interpretability and clearly stated assumptions matter to me. Currently contributing to LibreOffice.
+      </p>
+
+      <!-- Research Interests -->
+      <section class="section" id="research">
+        <div class="section-label">Research Interests</div>
+        <div class="interests">
+          <span class="pill">Systems Programming</span>
+          <span class="pill">Concurrent &amp; Distributed Systems</span>
+          <span class="pill">Operating Systems Internals</span>
+          <span class="pill">Network Protocol Design</span>
+          <span class="pill">Real-Time &amp; Embedded Systems</span>
+          <span class="pill">Performance Optimization</span>
+          <span class="pill">GPU &amp; Parallel Computing</span>
+          <span class="pill">ML Systems &amp; Inference Optimization</span>
+          <span class="pill">Deep Learning</span>
+          <span class="pill">Computational Linguistics</span>
+          <span class="pill">Cloud Infrastructure</span>
+          <span class="pill">CI/CD &amp; Automation</span>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section" id="skills">
+        <div class="section-label">Skills</div>
+        <div class="skills-grid">
+          <span class="skill-label">Languages</span>
+          <div class="tags">
+            <span class="tag">C++</span><span class="tag">Go</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Bash</span>
+          </div>
+          <span class="skill-label">Systems</span>
+          <div class="tags">
+            <span class="tag">Linux</span><span class="tag">Concurrency</span><span class="tag">Multithreading</span><span class="tag">TCP/IP</span><span class="tag">Socket Programming</span>
+          </div>
+          <span class="skill-label">Backend</span>
+          <div class="tags">
+            <span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Transactions</span>
+          </div>
+          <span class="skill-label">Tooling</span>
+          <div class="tags">
+            <span class="tag">Git</span><span class="tag">Make</span><span class="tag">CMake</span><span class="tag">GDB</span><span class="tag">Linux Toolchains</span>
+          </div>
+          <span class="skill-label">ML</span>
+          <div class="tags">
+            <span class="tag">PyTorch</span><span class="tag">sklearn</span><span class="tag">iNLPTK</span><span class="tag">NLP</span>
+          </div>
+          <span class="skill-label">DevOps</span>
+          <div class="tags">
+            <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">CI/CD</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section" id="experience">
+        <div class="section-label">Experience</div>
+        <div class="rows">
+          <div class="row">
+            <div class="row-year">2025 –<br>Present</div>
+            <div class="row-body">
+              <h3>Open-Source Systems Contributor — <a href="https://www.libreoffice.org/" target="_blank">LibreOffice</a></h3>
+              <div class="where">C++ · GDB · Make · CMake</div>
+              <ul>
+                <li>Fixed memory and logic defects in a multi-million LOC C++ codebase by tracing object lifetimes and cross-subsystem invariants.</li>
+                <li>Reproduced platform-specific failures across multiple build configurations using GDB, Make, and CMake.</li>
+                <li>Authored minimal targeted patches with regression-covering test validation; submitted via formal upstream code-review workflows.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section" id="projects">
+        <div class="section-label">Projects</div>
+        <div class="rows">
+
+          <div class="row">
+            <div class="row-year">Jan 2026</div>
+            <div class="row-body">
+              <h3>Full-Stack Vacation Rental Platform</h3>
+              <div class="where">Go · PostgreSQL · REST APIs</div>
+              <ul>
+                <li>Designed backend services in Go to manage property listings, bookings, and user accounts.</li>
+                <li>Developed relational schemas and enforced transactional booking workflows in PostgreSQL to prevent double-booking and ensure consistency.</li>
+                <li>Built REST APIs with structured request validation and error handling, exposing clear service contracts to the frontend client.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row-year">Nov 2025</div>
+            <div class="row-body">
+              <h3>Computational Morphology Pipeline for Gurmukhi Script</h3>
+              <div class="where">Python · Indic NLP Library · unsupervised learning</div>
+              <ul>
+                <li>Processed and normalized 1,430 pages of Gurmukhi text — Unicode standardization, noise removal, diacritic cleaning.</li>
+                <li>Built an unsupervised morphological analyzer using LCP-based stem induction and suffix-frequency filtering; extracted 3,400+ candidate stems and 75+ suffix patterns.</li>
+                <li>Improved segmentation accuracy on irregular classical forms by 18–25% using edit-distance–refined analysis.</li>
+                <li>Emphasized error analysis and limitations of heuristic methods over black-box modeling.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row-year">Jun–Jul 2025</div>
+            <div class="row-body">
+              <h3>Conway's Game of Life Simulation</h3>
+              <div class="where">C++</div>
+              <ul>
+                <li>Implemented the cellular automaton based on local state-transition rules.</li>
+                <li>Designed efficient grid updates using cache-friendly iteration and bit-packed storage.</li>
+                <li>Explored emergent behavior arising from simple deterministic rules.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row-year">Jun 2025</div>
+            <div class="row-body">
+              <h3>Distributed Multi-Client TCP Communication System</h3>
+              <div class="where">C++ · Multithreading · Socket Programming</div>
+              <ul>
+                <li>Implemented a concurrent TCP server supporting multiple simultaneous clients using thread-safe queues and synchronization primitives.</li>
+                <li>Created explicit connection lifecycle management to handle client disconnects and partial failures without crashing the server.</li>
+                <li>Enforced bounded message queues to prevent unbounded memory growth under load.</li>
+                <li>Reasoned about race conditions and synchronization to guarantee correct message ordering across clients.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section" id="education">
+        <div class="section-label">Education</div>
+        <div class="rows">
+          <div class="row">
+            <div class="row-year">Aug 2023 –<br>Present</div>
+            <div class="row-body">
+              <h3>B.Tech — Computer Science &amp; Engineering</h3>
+              <div class="where">Lovely Professional University, Phagwara · GPA 8.59 / 10 · Minor: Machine Learning · Open Minor: DevOps</div>
+              <p>Operating Systems, Data Structures &amp; Algorithms, Computer Networks, Database Management, Computer Organization &amp; Design, Artificial Intelligence, Machine Learning, Control Systems, OOP.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="section" id="certifications">
+        <div class="section-label">Certifications</div>
+        <div class="rows">
+          <div class="cert-row">
+            <span>Computer Communications — University of Colorado Boulder (Coursera)</span>
+            <span class="cert-date">Dec 2024</span>
+          </div>
+          <div class="cert-row">
+            <span>Computer Architecture — Princeton University (Coursera)</span>
+            <span class="cert-date">Dec 2024</span>
+          </div>
+          <div class="cert-row">
+            <span>Machine Learning — Stanford University (Coursera)</span>
+            <span class="cert-date">Aug 2025</span>
+          </div>
+          <div class="cert-row">
+            <span>Social Networks — NPTEL</span>
+            <span class="cert-date">May 2025</span>
+          </div>
+          <div class="cert-row">
+            <span>Ethical Hacking — NPTEL</span>
+            <span class="cert-date">Dec 2025</span>
+          </div>
+          <div class="cert-row">
+            <span>Drone Control Systems — NPTEL</span>
+            <span class="cert-date">Dec 2025</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    vaibhav kumar singh &nbsp;·&nbsp; phagwara, punjab &nbsp;·&nbsp; 2026
+  </footer>
+
+</body>
+</html>
